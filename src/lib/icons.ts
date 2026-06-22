@@ -1,0 +1,61 @@
+import {
+  ArrowRight,
+  BarChart3,
+  Briefcase,
+  Building2,
+  ClipboardCheck,
+  Code,
+  Eye,
+  Factory,
+  Globe,
+  Handshake,
+  Heart,
+  Landmark,
+  Layers,
+  Lightbulb,
+  MapPin,
+  Radio,
+  Rocket,
+  Settings,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Timer,
+  TrendingUp,
+  Users,
+  Zap,
+} from "lucide-react";
+
+export const icons = {
+  lightbulb: Lightbulb,
+  code: Code,
+  zap: Zap,
+  settings: Settings,
+  "clipboard-check": ClipboardCheck,
+  rocket: Rocket,
+  users: Users,
+  "trending-up": TrendingUp,
+  timer: Timer,
+  "shield-check": ShieldCheck,
+  eye: Eye,
+  handshake: Handshake,
+  target: Target,
+  globe: Globe,
+  "bar-chart": BarChart3,
+  sparkles: Sparkles,
+  "arrow-right": ArrowRight,
+  "map-pin": MapPin,
+  landmark: Landmark,
+  building: Building2,
+  radio: Radio,
+  heart: Heart,
+  factory: Factory,
+  briefcase: Briefcase,
+  layers: Layers,
+} as const;
+
+export type IconName = keyof typeof icons;
+
+export function getIcon(name: IconName) {
+  return icons[name];
+}
