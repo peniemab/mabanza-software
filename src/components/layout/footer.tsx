@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { ArrowRight, Globe, Mail, Sparkles } from "lucide-react";
+import { Globe, Mail } from "lucide-react";
 import { contactInfo, footerServices } from "@/lib/content";
 import { Logo } from "@/components/ui/logo";
+import { ExpertButton } from "@/components/ui/expert-button";
+import { LinkArrow } from "@/components/ui/link-arrow";
 import { LinkedInIcon, XIcon } from "@/components/ui/social-icons";
 
 export function Footer() {
@@ -43,16 +44,13 @@ export function Footer() {
           <ul className="space-y-2">
             {footerServices.map((service) => (
               <li key={service.label}>
-                <Link
+                <LinkArrow
                   href={service.href}
-                  className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                  variant="muted"
+                  className="text-sm font-normal"
                 >
                   {service.label}
-                  <ArrowRight
-                    className="h-4 w-4 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
-                    aria-hidden
-                  />
-                </Link>
+                </LinkArrow>
               </li>
             ))}
           </ul>
@@ -63,11 +61,11 @@ export function Footer() {
             Zone d&apos;intervention
           </h3>
           <div className="flex items-start gap-2 text-sm text-muted">
-              <Globe className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-              <p className="font-medium text-foreground">
-                {contactInfo.location}
-              </p>
-            </div>
+            <Globe className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+            <p className="font-medium text-foreground">
+              {contactInfo.location}
+            </p>
+          </div>
         </div>
 
         <div>
@@ -81,13 +79,7 @@ export function Footer() {
             <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
             {contactInfo.email}
           </a>
-          <a
-            href={`mailto:${contactInfo.email}`}
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
-          >
-            <Sparkles className="h-4 w-4" aria-hidden />
-            Parler à un expert
-          </a>
+          <ExpertButton href={`mailto:${contactInfo.email}`} />
         </div>
       </div>
 

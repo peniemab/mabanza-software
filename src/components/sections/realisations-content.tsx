@@ -16,7 +16,9 @@ import {
   realisationsDiff,
   contactInfo,
 } from "@/lib/content";
+import { PrimaryButton } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { SectionTitle } from "@/components/ui/section-title";
 
 export function RealisationsContent() {
   const [activeSector, setActiveSector] = useState("all");
@@ -64,9 +66,11 @@ export function RealisationsContent() {
 
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
-            <h1 className="text-4xl font-bold leading-[1.1] md:text-5xl lg:text-6xl">
-              Nos <span className="text-primary">réalisations</span>
-            </h1>
+            <SectionTitle
+              as="h1"
+              before="Nos"
+              highlight="réalisations"
+            />
           </Reveal>
 
           <Reveal delay={100}>
@@ -261,13 +265,13 @@ export function RealisationsContent() {
                 grande entreprise, nous vous aidons à structurer, sécuriser et
                 déployer des solutions digitales à fort impact.
               </p>
-              <a
+              <PrimaryButton
                 href={`mailto:${contactInfo.email}`}
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+                icon={Sparkles}
+                className="mt-8"
               >
-                <Sparkles className="h-4 w-4" aria-hidden />
                 Planifier un échange stratégique
-              </a>
+              </PrimaryButton>
             </div>
           </Reveal>
         </div>

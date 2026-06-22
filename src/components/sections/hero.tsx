@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { clientLogos } from "@/lib/content";
-import { getIcon } from "@/lib/icons";
+import { ClientBadge } from "@/components/ui/client-badge";
+import { OutlineButton, PrimaryButton } from "@/components/ui/button";
 
 export function Hero() {
-  const logos = [...clientLogos, ...clientLogos];
+  const marqueeLogos = [...clientLogos, ...clientLogos];
 
   return (
     <section className="relative min-h-[85vh] overflow-hidden px-6 pb-20 pt-16 md:pb-28 md:pt-24">
@@ -37,44 +37,35 @@ export function Hero() {
         </p>
 
         <div className="animate-fade-in-up hero-delay-5 mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
-          >
-            <Sparkles className="h-4 w-4" aria-hidden />
+          <PrimaryButton href="#contact" icon={Sparkles}>
             Commencer un projet
-          </a>
-          <a
-            href="#services"
-            className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-8 py-3.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
-          >
+          </PrimaryButton>
+          <OutlineButton href="#services" showArrow>
             Découvrir nos services
-            <ArrowRight
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-              aria-hidden
-            />
-          </a>
+          </OutlineButton>
         </div>
 
         <div className="animate-fade-in-up hero-delay-6 mt-20">
-          <div className="marquee-mask overflow-hidden">
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:hidden">
+            {clientLogos.map((client) => (
+              <ClientBadge
+                key={client.name}
+                name={client.name}
+                icon={client.icon}
+                compact
+              />
+            ))}
+          </div>
+
+          <div className="marquee-mask hidden overflow-hidden md:block">
             <div className="animate-infinite-scroll flex w-max items-center gap-10">
-              {logos.map((client, i) => {
-                const Icon = getIcon(client.icon);
-                return (
-                  <div
-                    key={`${client.name}-${i}`}
-                    className="flex shrink-0 items-center gap-3 rounded-xl border border-white/5 bg-matte/80 px-5 py-3"
-                  >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-background text-muted">
-                      <Icon className="h-5 w-5" aria-hidden />
-                    </span>
-                    <span className="text-sm font-medium text-muted">
-                      {client.name}
-                    </span>
-                  </div>
-                );
-              })}
+              {marqueeLogos.map((client, i) => (
+                <ClientBadge
+                  key={`${client.name}-${i}`}
+                  name={client.name}
+                  icon={client.icon}
+                />
+              ))}
             </div>
           </div>
         </div>
